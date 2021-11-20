@@ -1,0 +1,29 @@
+if __name__ == '__main__':
+    mlist=[]
+    s=[]
+    for i in range(int(input())):
+        name = input()
+        score = float(input())
+        s.append(score)
+        list=[]
+        list.append(name)
+        list.append(score)
+        # print(list)
+        mlist.insert(i,list)
+    # print(mlist)
+    s.sort()
+    
+    z=min(s)
+    while z in s:
+        s.remove(z)
+    # print(s)
+    z=min(s)    
+    name=[]
+    for q in mlist:
+        if(q[1]==z):
+            name.append(q[0])
+    name.sort()        
+    for j in name:
+        print(j)
+   
+        
