@@ -1,1 +1,18 @@
-
+class Solution(object):
+    def isAnagram(self, s, t):
+        k1={}
+        k2={}
+        for i in range(len(s)):
+            if not s[i] in k1:
+                k1[s[i]]=1
+            else:
+                k1[s[i]]+=1
+        for i in range(len(t)):
+            if not t[i] in k2:
+                k2[t[i]]=1
+            else:
+                k2[t[i]]+=1
+        if(k1==k2):
+            return True
+        return False
+        
