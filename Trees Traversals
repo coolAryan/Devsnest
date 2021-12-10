@@ -1,0 +1,110 @@
+class Node:
+    def __init__(self,data=0,left=None,right=None):
+        self.data=data
+        self.left=left
+        self.right=right
+        
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data,end=" ")
+        inorder(root.right)
+    
+def preorder(root):
+    if root:
+        print(root.data,end=" ")
+        preorder(root.left)
+        preorder(root.right)
+    
+def postorder(root):
+    if root:
+        postorder(root.left)
+        postorder(root.right)
+        print(root.data,end=" ")
+    
+
+def levelorder(root):
+    q=[root]
+    # q.append(9)
+    while len(q):
+        node=q.pop(0)
+        print(node.data,end=" ")
+        if node.left:
+            q.append(node.left)
+        if node.right:
+            q.append(node.right)
+            
+def levelqorder(root):
+    q=deque([root])
+    while len(q):
+        node=q.pop()
+        print(node.data,end=" ")
+        if node.left:
+            q.appendleft(node.left)
+        if node.right:
+            q.appendleft(node.right)
+        
+def levelwiseorder(root):
+    q=deque([None,root])
+    while True:
+        node=q.pop()
+        if not node:
+            if len(q)<1:
+                return
+            print("")
+            q.appendleft(None)
+            continue
+        print(node.data,end=" ")
+        if node.left:
+            q.appendleft(node.left)
+        if node.right:
+            q.appendleft(node.right)
+            
+def listlevelwise(root):
+    q=deque([None,root])
+    ans=[]
+    curr=[]
+    while True:
+        
+        node=q.pop()
+        if not node:
+            ans.append(curr)
+            if len(q)<1:
+                print(ans)
+                return
+            curr=[]
+            q.appendleft(None)
+            continue
+        curr.append(node.data)
+        if node.left:
+            q.appendleft(node.left)
+        if node.right:
+            q.appendleft(node.right)   
+        
+        
+root=Node(1,
+          Node(2,Node(4),Node(5)),
+         Node(3,Node(6),Node(7)))
+
+
+print("\nInorder")
+inorder(root)
+
+print("\nPreorder")
+preorder(root)
+
+print("\nPostorder")
+postorder(root)
+
+print("\nLevelorder")
+levelorder(root)
+
+print("\nLevelqorder")
+levelqorder(root)
+        
+    
+print("\nlevelwise")
+levelwiseorder(root)
+ 
+print("\nlistlevelwise")    
+listlevelwise(root)
