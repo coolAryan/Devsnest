@@ -21,3 +21,4 @@ cap=4
 page=[0, 2, 1, 6, 4, 0, 1, 0, 3, 1, 2, 1]
 print(page_fault(page,cap))
         
+# https://www.geeksforgeeks.org/program-page-replacement-algorithms-set-2-fifo/
