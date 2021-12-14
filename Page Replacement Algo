@@ -1,0 +1,23 @@
+def page_fault(pages,capacity):
+    n=len(pages)
+    s=set()
+    q=deque()
+    count=0
+    for p in pages:
+        print(list(q))
+        if p in s:
+            print("page-",p,": Hit")
+            continue
+        elif len(s)==capacity:
+            el=q.popleft()
+            s.remove(el)
+        q.append(p)
+        s.add(p)
+        count+=1
+    return count
+
+
+cap=4
+page=[0, 2, 1, 6, 4, 0, 1, 0, 3, 1, 2, 1]
+print(page_fault(page,cap))
+        
