@@ -1,0 +1,52 @@
+def page_fault(pages,capacity):
+    n=len(pages)
+    s=set()
+    q=deque()
+    count=0
+    for p in pages:
+        print(list(q))
+        if p in s:
+            print("page-",p,": Hit")
+            continue
+        elif len(s)==capacity:
+            el=q.popleft()
+            s.remove(el)
+        q.append(p)
+        s.add(p)
+        count+=1
+    return count
+
+
+def binary(n):
+    q=deque()
+    q.append("1")
+    while n:
+        t=q.popleft()        
+        q.append(t+"0")
+        q.append(t+"1")
+        print(t)
+        n-=1
+        
+def reverse(q):
+    
+    st=[]
+    while q:
+        t=q.popleft()
+        st.append(t)
+    while st:
+        print(st.pop(),end=' ')
+    
+
+q=deque()
+q.append(1)
+q.append(2)
+q.append(3)
+q.append(4)
+q.append(5)
+reverse(q)
+#binary(7)
+
+# cap=4
+# page=[0, 2, 1, 6, 4, 0, 1, 0, 3, 1, 2, 1]
+# print(page_fault(page,cap))
+        
