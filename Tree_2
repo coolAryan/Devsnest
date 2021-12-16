@@ -1,0 +1,103 @@
+from collections import deque 
+class Node:
+  def __init__(self,val=0,left=None,right=None):
+    self.val=val
+    self.left=left
+    self.right=right
+ans=0
+def sum(root):
+  global ans
+  if root:
+    ans+=root.val
+    sum(root.left)
+    sum(root.right)
+    
+  return ans
+
+def sumall(root):
+  if root:
+    return root.val +sumall(root.left)+sumall(root.right)
+  return 0
+
+def sumalleven(root):
+  if root:
+    return (root.val if root.val%2==0 else 0)+sumalleven(root.left)+sumalleven(root.right)
+  return 0
+
+def leafNodes(root):
+  if not (root.left and root.right):
+    print(root.val,end=" ") 
+  if root.left:
+    leafNodes(root.left)
+  if root.right:
+    leafNodes(root.right)
+
+
+
+
+def leafNodesopt(root):
+  if root.left:
+    leafNodesopt(root.left)
+    if root.right:
+      leafNodesopt(root.right)
+  elif root.right:
+    leafNodesopt(root.right)
+  else:
+    print(root.val,end=" ")
+
+def leafNodeOneL(root):
+  if root:
+    if not root.left and not root.right:
+      print(root.val,end=" ")
+    leafNodeOneL(root.left)
+    leafNodeOneL(root.right)
+    
+    
+
+  
+def leafsum(root):
+  if root:
+    if not root.left and not root.right:
+      return root.val
+    return leafsum(root.left)+leafsum(root.right)  
+  return 0
+
+
+def sumleaf(root):
+  if not root.left and not root.right:
+    return root.val
+  sum=sumleaf(root.left)if root.left else 0
+  sum+=sumleaf(root.right)if root.right else 0
+  return sum
+
+
+
+
+
+
+root=Node(1,Node(2,Node(4),Node(5)),Node(3,Node(6),Node(7)))
+
+
+print("\nLeafNodes")
+leafNodes(root)
+
+print("\nLeafNodesOptimised")
+leafNodesopt(root)
+
+print("\nLeafNodesOneL")
+leafNodeOneL(root)
+
+print("\nSumOfNodes")
+print(sum(root))
+
+print("\nSumOfAll")
+print(sumall(root))
+
+print("\nSumOfAllEvenNodes")
+print(sumalleven(root))
+
+print("\nsumleaf")
+print(leafsum(root))
+
+print("\nsumofleaf")
+print(sumleaf(root))
