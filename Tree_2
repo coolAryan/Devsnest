@@ -31,7 +31,7 @@ def leafNodes(root):
     leafNodes(root.left)
   if root.right:
     leafNodes(root.right)
-
+ 
 
 
 
